@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import {MdLogin} from 'react-icons/md';
 
 function Navbar() {
     return (
@@ -11,7 +12,7 @@ function Navbar() {
                 <Link to="/classes">Classes</Link>
                 <Link to="/dashboard">Dashboard</Link>
             </div>
-            <div><button className=''><Link to="/login">Login</Link></button></div>
+            <div><button className=' text-3xl pr-10'><Link to="/login"><MdLogin/></Link></button></div>
         </div>
     )
 }
