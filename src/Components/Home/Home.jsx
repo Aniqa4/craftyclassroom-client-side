@@ -1,8 +1,11 @@
 import React from 'react'
+import Slider from './Slider';
 
 function Home() {
   return (
-    <div>Home</div>
+    <div className=' container mx-auto my-24'>
+        <Slider></Slider>
+    </div>
   )
 }
 
