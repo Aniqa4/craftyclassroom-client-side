@@ -1,6 +1,6 @@
 import React from 'react'
 import SectionTitle from '../SectionTitle/SectionTitle';
-import slider4 from '../../assets/Slider/slider4.jpg'
+import slider4 from '../../assets/Slider/slider4.jpg';
 
 function PopularClasses() {
   return (
