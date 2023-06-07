@@ -10,7 +10,8 @@ function Navbar() {
                 <Link to="/">Home</Link>
                 <Link to="/instructors">Instructors</Link>
                 <Link to="/classes">Classes</Link>
-                <Link to="/dashboard">Dashboard</Link>
+                <Link to="/instructorDashboard">Instructor Dashboard</Link>
+                <Link to="/studentDashboard">Student Dashboard</Link>
             </div>
             <div><button className=' text-3xl pr-10'><Link to="/login"><MdLogin/></Link></button></div>
         </div>

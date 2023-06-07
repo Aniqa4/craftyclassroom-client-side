@@ -3,9 +3,10 @@ import Main from "../Components/Main/Main";
 import Home from "../Components/Home/Home";
 import Classes from "../Components/Classes/Classes";
 import Instructor from "../Components/Instructor/Instructor";
-import Dashboard from "../Components/Dashboard/Dashboard";
 import Login from "../Components/LoginAndRegister/Login";
 import Register from "../Components/LoginAndRegister/Register";
+import InstructorDashboard from "../Components/Dashboard/InstructorDashboard";
+import StudentDashboard from "../Components/Dashboard/StudentDashboard";
 
 const router=createBrowserRouter([
     {
@@ -25,8 +26,12 @@ const router=createBrowserRouter([
                 element:<Classes></Classes>
             },
             {
-                path:"/dashboard",
-                element:<Dashboard></Dashboard>
+                path:"/instructorDashboard",
+                element:<InstructorDashboard></InstructorDashboard>
+            },
+            {
+                path:"/studentDashboard",
+                element:<StudentDashboard></StudentDashboard>
             },
             {
                 path:"/login",
