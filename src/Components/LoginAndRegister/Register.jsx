@@ -1,13 +1,52 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import SectionTitle from '../SectionTitle/SectionTitle';
 import { AiFillEyeInvisible } from 'react-icons/ai'
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { AuthContext, auth } from '../../Provider/AuthProvider';
+import { updateProfile } from 'firebase/auth';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Register() {
+  const { signUp } = useContext(AuthContext);
+  const [confirmPassword, setConfirmPassword] = useState(false);
+  const [error,setError]=useState('')
+
+
   const { register, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+    const name=data.name;    
+    const photoURL=data.photoURL;    
+    const gender=data.gender;    
+    const phoneNumber=data.phoneNumber;    
+    const address=data.address;    
+
+
+    if (data.password === data.confirmPassword) {
+      signUp(data.email, data.password)
+        .then(result => {
+          const loggedUser = result.user;
+          console.log(loggedUser);
+          updateProfile(auth.currentUser, {
+            displayName: name,
+            photoURL: photoURL,
+            gender:gender,
+            phoneNumber : phoneNumber,
+            address :address
+          })
+          toast("Congrats! You are Registered")
+          setConfirmPassword(false);
+          setError('')
+        })
+        .catch(error=>{
+          console.log(error);
+          setError(error.message)
+        })
+    }
+    if (data.password !== data.confirmPassword) {
+      setConfirmPassword(true)
+    }
   }
 
   return (
@@ -40,7 +79,8 @@ function Register() {
                 placeholder="Confirm Password" className="input input-bordered w-full" />
               <span className=' absolute right-2 top-1/4'><AiFillEyeInvisible /></span>
             </div>
-            {errors.confirmPassword && <span className=' text-red-800'>Confirm password field is required</span>}
+            {errors.confirmPassword && <span className=' text-red-800'>Please comfirm your password</span>}
+            {confirmPassword && <span className=' text-red-800'>Passwords do not match</span>}
           </div>
           <label>PhotoURL:</label>
           <input type="photo" {...register("photoURL")} placeholder="Enter Your PhotoURL" className="input input-bordered w-full" />
@@ -59,7 +99,9 @@ function Register() {
           <input type="submit" value="Sign up" className="input input-bordered w-full mt-5" />
         </form>
         <p className=' text-center mt-10'>Already have an account? <Link to="/login"><span className='underline'>Log In</span></Link></p>
+        <p className=' text-center text-red-900 pt-2'>{error}</p>
       </div>
+      <ToastContainer />
     </div>
   )
 }
