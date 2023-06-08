@@ -5,9 +5,8 @@ import Classes from "../Components/Classes/Classes";
 import Instructor from "../Components/Instructor/Instructor";
 import Login from "../Components/LoginAndRegister/Login";
 import Register from "../Components/LoginAndRegister/Register";
-import InstructorDashboard from "../Components/Dashboard/InstructorDashboard";
-import StudentDashboard from "../Components/Dashboard/StudentDashboard";
-import AdminDashboard from "../Components/Dashboard/AdminDashboard";
+import Dashboard from "../Components/Dashboard/Dashboard";
+
 
 const router=createBrowserRouter([
     {
@@ -27,16 +26,8 @@ const router=createBrowserRouter([
                 element:<Classes></Classes>
             },
             {
-                path:"/instructorDashboard",
-                element:<InstructorDashboard></InstructorDashboard>
-            },
-            {
-                path:"/studentDashboard",
-                element:<StudentDashboard></StudentDashboard>
-            },
-            {
-                path:"/adminDashboard",
-                element:<AdminDashboard></AdminDashboard>
+                path:"/dashboard",
+                element:<Dashboard></Dashboard>
             },
             {
                 path:"/login",

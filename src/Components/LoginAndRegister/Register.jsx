@@ -1,11 +1,9 @@
 import React, { useContext, useState } from 'react'
 import SectionTitle from '../SectionTitle/SectionTitle';
-import { AiFillEyeInvisible } from 'react-icons/ai'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { AuthContext, auth } from '../../Provider/AuthProvider';
 import { updateProfile } from 'firebase/auth';
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Register() {
@@ -41,13 +39,15 @@ function Register() {
             address :address
           })
           setConfirmPassword(false);
-          setError('')
+          setError('');
+          navigate(from,{replace:true})
         })
         .catch(error=>{
           console.log(error);
           setError(error.message)
         })
-        navigate(from,{replace:true})
+        
+
     }
     if (data.password !== data.confirmPassword) {
       setConfirmPassword(true)
