@@ -12,6 +12,7 @@ function Navbar() {
                 <Link to="/classes">Classes</Link>
                 <Link to="/instructorDashboard">Instructor Dashboard</Link>
                 <Link to="/studentDashboard">Student Dashboard</Link>
+                <Link to="/adminDashboard">Admin Dashboard</Link>
             </div>
             <div><button className=' text-3xl pr-10'><Link to="/login"><MdLogin/></Link></button></div>
         </div>

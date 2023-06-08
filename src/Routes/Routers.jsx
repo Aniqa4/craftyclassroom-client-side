@@ -7,6 +7,7 @@ import Login from "../Components/LoginAndRegister/Login";
 import Register from "../Components/LoginAndRegister/Register";
 import InstructorDashboard from "../Components/Dashboard/InstructorDashboard";
 import StudentDashboard from "../Components/Dashboard/StudentDashboard";
+import AdminDashboard from "../Components/Dashboard/AdminDashboard";
 
 const router=createBrowserRouter([
     {
@@ -32,6 +33,10 @@ const router=createBrowserRouter([
             {
                 path:"/studentDashboard",
                 element:<StudentDashboard></StudentDashboard>
+            },
+            {
+                path:"/adminDashboard",
+                element:<AdminDashboard></AdminDashboard>
             },
             {
                 path:"/login",
