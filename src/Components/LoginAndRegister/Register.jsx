@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import SectionTitle from '../SectionTitle/SectionTitle';
 import { AiFillEyeInvisible } from 'react-icons/ai'
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { AuthContext, auth } from '../../Provider/AuthProvider';
 import { updateProfile } from 'firebase/auth';
@@ -12,6 +12,11 @@ function Register() {
   const { signUp } = useContext(AuthContext);
   const [confirmPassword, setConfirmPassword] = useState(false);
   const [error,setError]=useState('')
+
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
 
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -35,7 +40,6 @@ function Register() {
             phoneNumber : phoneNumber,
             address :address
           })
-          toast("Congrats! You are Registered")
           setConfirmPassword(false);
           setError('')
         })
@@ -43,6 +47,7 @@ function Register() {
           console.log(error);
           setError(error.message)
         })
+        navigate(from,{replace:true})
     }
     if (data.password !== data.confirmPassword) {
       setConfirmPassword(true)
@@ -66,19 +71,13 @@ function Register() {
           </div>
           <div>
             <label> Password:</label>
-            <div className='flex relative'>
-              <input type="password" {...register("password", { required: true })} placeholder="Enter Your Password" className="input input-bordered w-full" />
-              <span className=' absolute right-2 top-1/4'><AiFillEyeInvisible /></span>
-            </div>
+            <input type="password" {...register("password", { required: true })} placeholder="Enter Your Password" className="input input-bordered w-full" />
             {errors.password && <span className=' text-red-800'>Password field is required</span>}
           </div>
           <div>
             <label>Confirm Password:</label>
-            <div className='flex relative'>
-              <input type="password" {...register("confirmPassword", { required: true })}
+            <input type="password" {...register("confirmPassword", { required: true })}
                 placeholder="Confirm Password" className="input input-bordered w-full" />
-              <span className=' absolute right-2 top-1/4'><AiFillEyeInvisible /></span>
-            </div>
             {errors.confirmPassword && <span className=' text-red-800'>Please comfirm your password</span>}
             {confirmPassword && <span className=' text-red-800'>Passwords do not match</span>}
           </div>
@@ -101,7 +100,6 @@ function Register() {
         <p className=' text-center mt-10'>Already have an account? <Link to="/login"><span className='underline'>Log In</span></Link></p>
         <p className=' text-center text-red-900 pt-2'>{error}</p>
       </div>
-      <ToastContainer />
     </div>
   )
 }
