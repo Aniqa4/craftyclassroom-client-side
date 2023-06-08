@@ -19,7 +19,9 @@ function Navbar() {
                 <Link to="/">Home</Link>
                 <Link to="/instructors">Instructors</Link>
                 <Link to="/classes">Classes</Link>
-                <Link to="/dashboard">Dashboard</Link>
+                <Link to="/adminDashboard">Admin Dashboard</Link>
+                <Link to="/instructorDashboard">Instructor Dashboard</Link>
+                <Link to="/studentDashboard">Student Dashboard</Link>
             </div>
             <div className='flex justify-center'>
                 {
