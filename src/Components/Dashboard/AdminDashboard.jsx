@@ -64,14 +64,14 @@ function AdminDashboard() {
               </table>
             </TabPanel>
             <TabPanel>
-              <div>
+              <div >
                 {
                   classes.map((singleClass,index)=>
-                  <div key={index}>
+                  <div key={index} className='grid grid-cols-2 mb-5'>
                     {
                       singleClass.classes.map((x,index)=>
                       <div key={index}>
-                        <p>{x.classId}</p>
+                        <img src={x.classImage} className='w-96 h-60 rounded-xl'/>
                       </div>)
                     }
                   </div>
