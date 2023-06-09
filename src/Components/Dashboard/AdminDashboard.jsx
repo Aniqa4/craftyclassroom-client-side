@@ -4,12 +4,21 @@ import SectionTitle from '../SectionTitle/SectionTitle';
 
 function AdminDashboard() {
   const [users, setUsers] = useState([]);
+  const [classes, setClasses] = useState([]);
 
   useEffect(() => {
     fetch('http://localhost:5000/users')
       .then(res => res.json())
       .then(data => {
         setUsers(data)
+      })
+  }, [])
+
+  useEffect(() => {
+    fetch('http://localhost:5000/classes')
+      .then(res => res.json())
+      .then(data => {
+        setClasses(data)
       })
   }, [])
 
@@ -55,7 +64,19 @@ function AdminDashboard() {
               </table>
             </TabPanel>
             <TabPanel>
-              <div>hhhhhhhhhhhhhhhhhhh</div>
+              <div>
+                {
+                  classes.map((singleClass,index)=>
+                  <div key={index}>
+                    {
+                      singleClass.classes.map((x,index)=>
+                      <div key={index}>
+                        <p>{x.classId}</p>
+                      </div>)
+                    }
+                  </div>
+                )}
+              </div>
             </TabPanel>
           </div>
         </div>
