@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import SectionTitle from '../SectionTitle/SectionTitle';
 import SubTitle from '../SectionTitle/SubTitle';
+
 
 function Instructor() {
   const [instructors, setInstructors] = useState([]);
