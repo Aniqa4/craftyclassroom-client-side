@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import SectionTitle from '../SectionTitle/SectionTitle';
 import { FcGoogle } from 'react-icons/fc';
 import { AiFillEyeInvisible } from 'react-icons/ai'
@@ -8,7 +8,8 @@ import { AuthContext } from '../../Provider/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
 
 function Login() {
-  const [error,setError]=useState('');
+  const [error, setError] = useState('');
+  const [users, setUsers] = useState([]);
 
   const { signIn, googleSignIn } = useContext(AuthContext);
   const provider = new GoogleAuthProvider;
@@ -17,32 +18,62 @@ function Login() {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  useEffect(() => {
+    fetch('http://localhost:5000/users')
+      .then(res => res.json())
+      .then(data => {
+        setUsers(data)
+      })
+  }, [])
+
+  const { register, handleSubmit, formState: { errors, isValid } } = useForm();
   const onSubmit = data => {
     signIn(data.email, data.password)
       .then(result => {
         const loggedUser = result.user;
         console.log(loggedUser);
-        navigate(from,{replace:true})
+        navigate(from, { replace: true })
       })
       .catch(error => {
         console.log(error);
         setError(error.message)
       })
-      
+
     console.log(data)
   };
 
   const handleGoogleSignIn = () => {
-    googleSignIn(provider)
-      .then(result => {
-        const loggedUser = result.user;
-        console.log(loggedUser);
-        navigate(from,{replace:true})
-      })
-      .catch(error => {
-        setError(error.message)
-      })
+    if (isValid) {
+      googleSignIn(provider)
+        .then(result => {
+          const loggedUser = result.user;
+
+          const email = loggedUser.email;
+          const existingUser = users.find(x => x.email === email)
+          if (!existingUser) {
+            const name = loggedUser.displayName;
+            const photoURL = loggedUser.photoURL;
+            const email = loggedUser.email;
+            const role = 'student';
+            const newUser = { name, email, photoURL, role }
+            fetch('http://localhost:5000/users', {
+              method: 'POST',
+              headers: {
+                'content-type': 'application/json'
+              },
+              body: JSON.stringify(newUser)
+            })
+
+          }
+          console.log('me', loggedUser.photoURL);
+
+          navigate(from, { replace: true })
+        })
+        .catch(error => {
+          setError(error.message)
+        })
+    }
+
   }
 
   return (
