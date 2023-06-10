@@ -21,14 +21,14 @@ function Instructor() {
         setInstructors(data)
       })
   }, [])
-  console.log(approvedClasses);
+  //console.log(approvedClasses);
 
 
   return (
-    <div className='md:container md:mx-auto mx-5 my-24'>
+    <div className='md:container md:mx-auto mx-5 md:my-24 my-5'>
       <SectionTitle title={'All Instructors'}></SectionTitle>
       <SubTitle subTitle={'Meet Our Talented Instructors'}></SubTitle>
-      <div className='grid md:grid-cols-2 md:gap-20 gap-5'>
+      <div className='grid md:grid-cols-2  md:gap-20 gap-5'>
         {
           instructors.map(instructor =>
             <div key={instructor._id} className="card card-side bg-base-100 shadow-xl">
@@ -45,9 +45,9 @@ function Instructor() {
                     <>
                       {
                         approvedClasses.filter(y => y.email === instructor.email).map(x =>
-                          <>
-                            <span key={instructor._id}>{x.className},&nbsp;</span>
-                          </>)
+                          
+                            <span key={x._id}>{x.className},&nbsp;</span>
+                          )
                       }
                     </> : <span> {approvedClasses.filter(y => y.email === instructor.email).className}</span>
                 }

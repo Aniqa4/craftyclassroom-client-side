@@ -8,36 +8,52 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 function Slider() {
     return (
-        <div className='my-10'>
+        <div className='md:my-10 my-5'>
             <Carousel>
                 <div className=' relative'>
-                    <img src={slider1} className=' rounded' />
-                    <div className=" absolute top-1/3 mt-16 left-10 right-10 rounded-lg bg-gray-300 opacity-60 p-10">
-                        <span className=' text-black font-bold text-3xl'>Welcome to Crafty Classroom</span>
-                        <p className=' text-cyan-950'>CraftyClassroom is an online platform dedicated to providing a wide range of extracurricular arts and crafts courses. 
-                            Whether you're a beginner or an experienced artist, our website offers a variety of creative classes and workshops. 
-                            Explore painting, drawing, pottery, and more while 
-                            connecting with fellow art enthusiasts in our vibrant community. 
+                    <img src={slider4} className=' rounded' />
+                    <div 
+                    className="absolute md:top-1/3 md:mt-16 md:left-10 md:right-10 top-1/4 left-5 right-5 rounded-lg bg-gray-300 opacity-60 md:p-10">
+                        <span className=' text-black font-bold md:text-3xl'>Welcome to Crafty Classroom</span>
+                        <p className=' text-cyan-950 md:text-base text-xs'>CraftyClassroom is an online platform dedicated to providing a wide range of extracurricular arts and crafts courses.
+                            Whether you're a beginner or an experienced artist, our website offers a variety of creative classes and workshops.
+                            Explore painting, drawing, pottery, and more while
+                            connecting with fellow art enthusiasts in our vibrant community.
                             Ignite your artistic passion and expand your skills with ArtCraft Hub.</p>
                     </div>
                 </div>
                 <div>
                     <img src={slider2} className=' rounded' />
-                    <p className=" absolute top-1/3 mt-20 left-10 right-10 rounded-lg bg-gray-300 opacity-40 p-10">
-                        <span className=' text-black font-bold text-3xl'>Welcome to Crafty Classroom</span>
-                    </p>
+                    <div className="absolute md:top-1/3 md:mt-16 md:left-10 md:right-10 top-1/4 left-5 right-5 rounded-lg bg-gray-300 opacity-60 md:p-10">
+                        <span className=' text-black font-bold md:text-3xl'>Welcome to Crafty Classroom</span>
+                        <p className=' text-cyan-950 md:text-base text-xs'>CraftyClassroom is an online platform dedicated to providing a wide range of extracurricular arts and crafts courses.
+                            Whether you're a beginner or an experienced artist, our website offers a variety of creative classes and workshops.
+                            Explore painting, drawing, pottery, and more while
+                            connecting with fellow art enthusiasts in our vibrant community.
+                            Ignite your artistic passion and expand your skills with ArtCraft Hub.</p>
+                    </div>
                 </div>
                 <div>
                     <img src={slider3} className=' rounded' />
-                    <p className=" absolute top-1/3 mt-20 left-10 right-10 rounded-lg bg-gray-300 opacity-40 p-10">
-                        <span className=' text-black font-bold text-3xl'>Welcome to Crafty Classroom</span>
-                    </p>
+                    <div className="absolute md:top-1/3 md:mt-16 md:left-10 md:right-10 top-1/4 left-5 right-5 rounded-lg bg-gray-300 opacity-60 md:p-10">
+                        <span className=' text-black font-bold md:text-3xl'>Welcome to Crafty Classroom</span>
+                        <p className=' text-cyan-950 md:text-base text-xs'>CraftyClassroom is an online platform dedicated to providing a wide range of extracurricular arts and crafts courses.
+                            Whether you're a beginner or an experienced artist, our website offers a variety of creative classes and workshops.
+                            Explore painting, drawing, pottery, and more while
+                            connecting with fellow art enthusiasts in our vibrant community.
+                            Ignite your artistic passion and expand your skills with ArtCraft Hub.</p>
+                    </div>
                 </div>
                 <div>
-                    <img src={slider4} className=' rounded' />
-                    <p className=" absolute top-1/3 mt-20 left-10 right-10 rounded-lg bg-gray-300 opacity-40 p-10">
-                        <span className=' text-black font-bold text-3xl'>Welcome to Crafty Classroom</span>
-                    </p>
+                    <img src={slider1} className=' rounded' />
+                    <div className="absolute md:top-1/3 md:mt-16 md:left-10 md:right-10 top-1/4 left-5 right-5 rounded-lg bg-gray-300 opacity-60 md:p-10">
+                        <span className=' text-black font-bold md:text-3xl'>Welcome to Crafty Classroom</span>
+                        <p className=' text-cyan-950 md:text-base text-xs'>CraftyClassroom is an online platform dedicated to providing a wide range of extracurricular arts and crafts courses.
+                            Whether you're a beginner or an experienced artist, our website offers a variety of creative classes and workshops.
+                            Explore painting, drawing, pottery, and more while
+                            connecting with fellow art enthusiasts in our vibrant community.
+                            Ignite your artistic passion and expand your skills with ArtCraft Hub.</p>
+                    </div>
                 </div>
             </Carousel>
         </div>

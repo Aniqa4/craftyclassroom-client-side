@@ -5,7 +5,7 @@ import PopularInstructors from './PopularInstructors';
 
 function Home() {
   return (
-    <div className=' container mx-auto my-24'>
+    <div className=' container mx-auto md:my-24'>
         <Slider></Slider>
         <PopularClasses></PopularClasses>
         <PopularInstructors></PopularInstructors>
