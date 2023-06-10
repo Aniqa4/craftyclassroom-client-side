@@ -33,7 +33,7 @@ function Register() {
         signUp(data.email, data.password)
           .then(result => {
             const loggedUser = result.user;
-            console.log(loggedUser);
+            //console.log(loggedUser);
             updateProfile(auth.currentUser, {
               displayName: name,
               photoURL: photoURL,

@@ -4,6 +4,15 @@ import SubTitle from '../SectionTitle/SubTitle';
 
 function Instructor() {
   const [instructors, setInstructors] = useState([]);
+  const [approvedClasses, setApprovedClasses] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/approvedClasses')
+      .then(res => res.json())
+      .then(data => {
+        setApprovedClasses(data)
+      })
+  }, [])
 
   useEffect(() => {
     fetch('http://localhost:5000/allinstructors')
@@ -12,7 +21,8 @@ function Instructor() {
         setInstructors(data)
       })
   }, [])
-  console.log(instructors);
+  console.log(approvedClasses);
+
 
   return (
     <div className='md:container md:mx-auto mx-5 my-24'>
@@ -26,14 +36,28 @@ function Instructor() {
               <div className="card-body" >
                 <h1 className=' font-semibold'>Name: {instructor.name}</h1>
                 <p className=' text-gray-500'>Email: {instructor.email}</p>
-                <div className="card-actions justify-end">
-                  <button className="btn bg-gray-200 text-cyan-950 font-bold">See Classes</button>
-                </div>
+                <p className=' text-gray-500'>Number of Classes Taken:&nbsp;
+                  {approvedClasses.filter(y => y.email === instructor.email).length}
+                </p>
+                <p className=' text-gray-500'>Name of the Classes:&nbsp;
+                  {
+                    approvedClasses.filter(y => y.email === instructor.email).length > 1 ?
+                    <>
+                      {
+                        approvedClasses.filter(y => y.email === instructor.email).map(x =>
+                          <>
+                            <span key={instructor._id}>{x.className},&nbsp;</span>
+                          </>)
+                      }
+                    </> : <span> {approvedClasses.filter(y => y.email === instructor.email).className}</span>
+                }
+                  
+                </p>
               </div>
             </div>)
         }
       </div>
-    </div>
+    </div >
   )
 }
 
