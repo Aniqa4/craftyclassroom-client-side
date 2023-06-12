@@ -17,7 +17,7 @@ function StudentDashboard() {
     //const [studentData, refetch]=useStudentData()
 
     useEffect(() => {
-        fetch('http://localhost:5000/selectedClasses')
+        fetch('https://summer-camp-school-server-side-phi.vercel.app/selectedClasses')
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -26,7 +26,7 @@ function StudentDashboard() {
     }, [])
 
     useEffect(() => {
-        fetch('http://localhost:5000/enrolledClasses')
+        fetch('https://summer-camp-school-server-side-phi.vercel.app/enrolledClasses')
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -36,7 +36,7 @@ function StudentDashboard() {
 
     const handleDeleteClass = (id) => {
         console.log(id);
-        fetch(`http://localhost:5000/selectedClasses/${id}`,
+        fetch(`https://summer-camp-school-server-side-phi.vercel.app/selectedClasses/${id}`,
             {
                 method: 'DELETE'
             })

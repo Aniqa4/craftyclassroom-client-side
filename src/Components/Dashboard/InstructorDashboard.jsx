@@ -41,7 +41,7 @@ function InstructorDashboard() {
     const newClass = { className, classImage, name, email, availableSeats, price, status, totalEnrolledStudents, feedback }
     console.log('clicked', newClass);
 
-    fetch('http://localhost:5000/newClass', {
+    fetch('https://summer-camp-school-server-side-phi.vercel.app/newClass', {
       method: 'POST',
       headers:
         { 'content-type': 'application/json' },

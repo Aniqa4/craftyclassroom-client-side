@@ -53,12 +53,12 @@ const router=createBrowserRouter([
             {
                 path:"/payment/:id",
                 element:<Payment></Payment>,
-                loader:({params})=>fetch(`http://localhost:5000/selectedClasses/${params.id}`)
+                loader:({params})=>fetch(`https://summer-camp-school-server-side-phi.vercel.app/selectedClasses/${params.id}`)
             },
             {
                 path:"/updateClass/:id",
                 element:<UpdateClass></UpdateClass>,
-                loader:({params})=>fetch(`http://localhost:5000/allclasses/${params.id}`)
+                loader:({params})=>fetch(`https://summer-camp-school-server-side-phi.vercel.app/allclasses/${params.id}`)
             }
         ]
     }

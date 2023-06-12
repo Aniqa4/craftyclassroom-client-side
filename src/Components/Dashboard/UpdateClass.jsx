@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import SectionTitle from '../SectionTitle/SectionTitle';
 
 function UpdateClass() {
@@ -17,7 +17,7 @@ function UpdateClass() {
         const updateClass = { className, classImage, availableSeats, price}
         console.log('clicked', updateClass);
     
-        fetch(`http://localhost:5000/allclasses/${classData._id}`, {
+        fetch(`https://summer-camp-school-server-side-phi.vercel.app/allclasses/${classData._id}`, {
           method: 'PUT',
           headers:
             { 'content-type': 'application/json' },
@@ -52,8 +52,10 @@ function UpdateClass() {
         <input type="number" pattern="[789][0-9]{9}" name="price" placeholder="Enter Price($)" className="input input-bordered input-accent" />
         <input type="number" pattern="[789][0-9]{9}" name="availableSeats"
           placeholder="Enter Total Seats(max 20)" className="input input-bordered input-accent" />
-        <input type="Submit" value="ADD" className='btn' />
+        <input type="Submit" value="UPDATE" className='btn' />
       </form>
+
+      <Link to="/instructorDashboard"><button className='btn flex mx-auto my-10'>Return to dashboard</button></Link>
     </div>
   )
 }

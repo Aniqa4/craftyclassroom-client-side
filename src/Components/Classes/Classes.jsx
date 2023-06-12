@@ -41,8 +41,6 @@ function Classes() {
     return <div><span className="loading loading-spinner loading-lg"></span></div>
   }
 
-
-
   const handleSelectClass = (classImage, className, price, instructorName, classId) => {
 
     if (user) {
@@ -50,9 +48,12 @@ function Classes() {
       const studentEmail = user.email;
       const paymentStatus='pending';
       const studentData = { studentName, studentEmail, classImage, className, price, instructorName, classId,paymentStatus }
-      console.log(studentData);
+      console.log("student data",studentData);
 
-      const existingData = studentsData.find(x => x.classId === classId);
+      const previousSelectedClasses=studentsData.filter(x => x.studentEmail == user.email );
+
+      const existingData = previousSelectedClasses.find(x => x.classId == classId );
+      console.log('data',existingData);
 
       if (!existingData) {
         fetch('https://summer-camp-school-server-side-phi.vercel.app/studentsData', {
@@ -66,6 +67,10 @@ function Classes() {
           .then(data => {
             console.log(data);
           })
+          .then(() => {
+            // Update the studentsData state to include the newly selected class
+            setStudentsData([...studentsData, studentData]);
+  
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -73,7 +78,9 @@ function Classes() {
           showConfirmButton: false,
           timer: 1500
         })
-      }
+      })
+      }   
+    
       else {
         Swal.fire({
 
@@ -92,16 +99,13 @@ function Classes() {
       })
     }
 
-
+  console.log('clicked');
   }
 
-  if (loading) {
-    return <div>..........</div>
-
-  }
+  
 
 
-  console.log(studentsData);
+  //console.log(studentsData);
 
   return (
     <div className=' md:container md:mx-auto mx-5 my-24'>
