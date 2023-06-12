@@ -4,7 +4,7 @@ import SubTitle from '../SectionTitle/SubTitle';
 
 
 function PopularInstructors() {
-    const url = 'http://localhost:5000/sixInstructors';
+    const url = 'https://summer-camp-school-server-side-phi.vercel.app/sixInstructors';
     const [instructors, setInstructors] = useState([]);
 
     useEffect(() => {

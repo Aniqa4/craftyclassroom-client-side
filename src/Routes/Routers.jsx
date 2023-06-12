@@ -8,6 +8,9 @@ import Register from "../Components/LoginAndRegister/Register";
 import AdminDashboard from "../Components/Dashboard/AdminDashboard";
 import InstructorDashboard from "../Components/Dashboard/InstructorDashboard";
 import StudentDashboard from "../Components/Dashboard/StudentDashboard";
+import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
+import Payment from "../Components/Dashboard/Payment";
+import UpdateClass from "../Components/Dashboard/UpdateClass";
 
 
 const router=createBrowserRouter([
@@ -29,15 +32,15 @@ const router=createBrowserRouter([
             },
             {
                 path:"/adminDashboard",
-                element:<AdminDashboard></AdminDashboard>
+                element:<PrivateRoutes><AdminDashboard></AdminDashboard></PrivateRoutes>
             },
             {
                 path:"/instructorDashboard",
-                element:<InstructorDashboard></InstructorDashboard>
+                element:<PrivateRoutes><InstructorDashboard></InstructorDashboard></PrivateRoutes>
             },
             {
                 path:"/studentDashboard",
-                element:<StudentDashboard></StudentDashboard>
+                element:<PrivateRoutes><StudentDashboard></StudentDashboard></PrivateRoutes>
             },
             {
                 path:"/login",
@@ -47,6 +50,16 @@ const router=createBrowserRouter([
                 path:"/register",
                 element:<Register></Register>
             },
+            {
+                path:"/payment/:id",
+                element:<Payment></Payment>,
+                loader:({params})=>fetch(`http://localhost:5000/selectedClasses/${params.id}`)
+            },
+            {
+                path:"/updateClass/:id",
+                element:<UpdateClass></UpdateClass>,
+                loader:({params})=>fetch(`http://localhost:5000/allclasses/${params.id}`)
+            }
         ]
     }
 ])

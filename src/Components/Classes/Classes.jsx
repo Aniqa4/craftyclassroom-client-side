@@ -10,9 +10,18 @@ function Classes() {
   const { user, loading } = useContext(AuthContext);
   const [approvedClasses, setApprovedClasses] = useState([]);
   const [studentsData, setStudentsData] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/approvedClasses')
+    fetch('https://summer-camp-school-server-side-phi.vercel.app/users')
+      .then(res => res.json())
+      .then(data => {
+        setUsers(data)
+      })
+
+  }, [])
+  useEffect(() => {
+    fetch('https://summer-camp-school-server-side-phi.vercel.app/approvedClasses')
       .then(res => res.json())
       .then(data => {
         setApprovedClasses(data)
@@ -21,7 +30,7 @@ function Classes() {
   }, [])
 
   useEffect(() => {
-    fetch('http://localhost:5000/studentsData')
+    fetch('https://summer-camp-school-server-side-phi.vercel.app/studentsData')
       .then(res => res.json())
       .then(data => {
         setStudentsData(data)
@@ -33,43 +42,53 @@ function Classes() {
   }
 
 
-  const studentName = user.displayName;
-  const studentEmail = user.email;
-
 
   const handleSelectClass = (classImage, className, price, instructorName, classId) => {
 
-    const studentData = { studentName, studentEmail, classImage, className, price, instructorName, classId }
-    console.log(studentData);
+    if (user) {
+      const studentName = user.displayName;
+      const studentEmail = user.email;
+      const paymentStatus='pending';
+      const studentData = { studentName, studentEmail, classImage, className, price, instructorName, classId,paymentStatus }
+      console.log(studentData);
 
-    const existingData = studentsData.find(x => x.classId === classId);
+      const existingData = studentsData.find(x => x.classId === classId);
 
-    if (!existingData) {
-      fetch('http://localhost:5000/studentsData', {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify(studentData)
-      })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data);
+      if (!existingData) {
+        fetch('https://summer-camp-school-server-side-phi.vercel.app/studentsData', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(studentData)
         })
+          .then(res => res.json())
+          .then(data => {
+            console.log(data);
+          })
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: 'Your work has been saved',
+          title: 'Class has been added!',
           showConfirmButton: false,
           timer: 1500
         })
+      }
+      else {
+        Swal.fire({
+
+          title: 'You have already added this class!',
+          text: 'Try to select another class',
+
+        })
+      }
     }
     else{
       Swal.fire({
-        
-        title: 'You have already added this class!',
-        text: 'Try to select another class',
-      
+
+        icon: 'info',
+        text: 'Please log in to Select class',
+  
       })
     }
 
@@ -102,7 +121,8 @@ function Classes() {
                 <p>Price : {x.price}$</p>
                 <div className="card-actions">
                   <button onClick={() => handleSelectClass(x.classImage, x.className, x.price, x.name, x._id)}
-                    className="btn bg-gray-200 text-cyan-950">Select</button>
+                    className="btn bg-gray-200 text-cyan-950" 
+                    disabled={((users.find(x=>x.email===user.email)?.role)==='admin')||((users.find(x=>x.email===user.email)?.role)==='instructor')}>Select</button>
                 </div>
               </div>
             </div>)

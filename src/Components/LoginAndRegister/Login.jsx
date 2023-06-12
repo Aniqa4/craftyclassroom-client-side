@@ -19,7 +19,7 @@ function Login() {
   const from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
-    fetch('http://localhost:5000/users')
+    fetch('https://summer-camp-school-server-side-phi.vercel.app/users')
       .then(res => res.json())
       .then(data => {
         setUsers(data)
@@ -28,55 +28,81 @@ function Login() {
 
   const { register, handleSubmit, formState: { errors, isValid } } = useForm();
   const onSubmit = data => {
-    signIn(data.email, data.password)
-      .then(result => {
-        const loggedUser = result.user;
-        console.log(loggedUser);
-        navigate(from, { replace: true })
-      })
-      .catch(error => {
-        console.log(error);
-        setError(error.message)
-      })
-
-    console.log(data)
-  };
-
-  const handleGoogleSignIn = () => {
     if (isValid) {
-      googleSignIn(provider)
+      signIn(data.email, data.password)
         .then(result => {
-          const loggedUser = result.user;
+          const user = result.user;
+          const loggedUser = { emai: user.email };
+          fetch('http://localhost:5000/jwt', {
+            method: 'POST',
+            headers:
+              { 'content-type': 'application.json' },
+            body: JSON.stringify(loggedUser)
 
-          const email = loggedUser.email;
-          const existingUser = users.find(x => x.email === email)
-          if (!existingUser) {
-            const name = loggedUser.displayName;
-            const photoURL = loggedUser.photoURL;
-            const email = loggedUser.email;
-            const role = 'student';
-            const newUser = { name, email, photoURL, role }
-            fetch('http://localhost:5000/users', {
-              method: 'POST',
-              headers: {
-                'content-type': 'application/json'
-              },
-              body: JSON.stringify(newUser)
-            })
-            .then(res=>res.json())
-            .then(data=>{
+          })
+            .then(res => res.json())
+            .then(data => {
               console.log(data);
+              localStorage.setItem('access-token', data.token)
             })
-
-          }
-          console.log('me', loggedUser.photoURL);
-
           navigate(from, { replace: true })
         })
         .catch(error => {
+          console.log(error);
           setError(error.message)
         })
+
     }
+
+  };
+
+  const handleGoogleSignIn = () => {
+
+    googleSignIn(provider)
+      .then(result => {
+        const loggedUser = result.user;
+
+        const email = loggedUser.email;
+        const existingUser = users.find(x => x.email === email)
+        if (!existingUser) {
+          const name = loggedUser.displayName;
+          const photoURL = loggedUser.photoURL;
+          const email = loggedUser.email;
+          const role = 'student';
+          const newUser = { name, email, photoURL, role }
+          fetch('https://summer-camp-school-server-side-phi.vercel.app/users', {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json'
+            },
+            body: JSON.stringify(newUser)
+          })
+            .then(res => res.json())
+            .then(data => {
+              console.log(data);
+            })
+
+        }
+        const user = { emai: loggedUser.email };
+        fetch('http://localhost:5000/jwt', {
+          method: 'POST',
+          headers:
+            { 'content-type': 'application.json' },
+          body: JSON.stringify(user)
+
+        })
+          .then(res => res.json())
+          .then(data => {
+            console.log(data);
+            localStorage.setItem('access-token', data.token)
+          })
+
+        navigate(from, { replace: true })
+      })
+      .catch(error => {
+        setError(error.message)
+      })
+
 
   }
 

@@ -7,7 +7,12 @@ function AdminDashboard() {
   const [classes, setClasses] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/users')
+    fetch('https://summer-camp-school-server-side-phi.vercel.app/users',{
+      method:'GET',
+      headers:{
+        authorization: `Bearer ${localStorage.getItem('access-roken')}`
+      }
+    })
       .then(res => res.json())
       .then(data => {
         setUsers(data)
@@ -15,7 +20,7 @@ function AdminDashboard() {
   }, [])
 
   useEffect(() => {
-    fetch('http://localhost:5000/allclasses')
+    fetch('https://summer-camp-school-server-side-phi.vercel.app/allclasses')
       .then(res => res.json())
       .then(data => {
         setClasses(data)

@@ -7,7 +7,7 @@ function PopularClasses() {
   const [approvedClasses, setApprovedClasses] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/popularClasses')
+    fetch('https://summer-camp-school-server-side-phi.vercel.app/popularClasses')
       .then(res => res.json())
       .then(data => {
         setApprovedClasses(data)

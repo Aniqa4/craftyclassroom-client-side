@@ -1,14 +1,17 @@
-import React, {  useEffect, useState } from 'react';
+import React, {  useContext, useEffect, useState } from 'react';
 import SectionTitle from '../SectionTitle/SectionTitle';
 import SubTitle from '../SectionTitle/SubTitle';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 
 function Instructor() {
+  const {loading}=useContext(AuthContext);
   const [instructors, setInstructors] = useState([]);
   const [approvedClasses, setApprovedClasses] = useState([]);
 
+
   useEffect(() => {
-    fetch('http://localhost:5000/approvedClasses')
+    fetch('https://summer-camp-school-server-side-phi.vercel.app/approvedClasses')
       .then(res => res.json())
       .then(data => {
         setApprovedClasses(data)
@@ -16,7 +19,7 @@ function Instructor() {
   }, [])
 
   useEffect(() => {
-    fetch('http://localhost:5000/allinstructors')
+    fetch('https://summer-camp-school-server-side-phi.vercel.app/allinstructors')
       .then(res => res.json())
       .then(data => {
         setInstructors(data)
