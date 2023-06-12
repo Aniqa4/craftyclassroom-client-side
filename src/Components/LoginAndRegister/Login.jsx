@@ -33,7 +33,7 @@ function Login() {
         .then(result => {
           const user = result.user;
           const loggedUser = { emai: user.email };
-          fetch('http://localhost:5000/jwt', {
+          fetch('https://summer-camp-school-server-side-phi.vercel.app/jwt', {
             method: 'POST',
             headers:
               { 'content-type': 'application.json' },

@@ -10,11 +10,19 @@ function Register() {
   const { signUp } = useContext(AuthContext);
   const [confirmPassword, setConfirmPassword] = useState(false);
   const [error, setError] = useState('')
+  const [users, setUsers] = useState([])
 
 
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+
+  fetch('https://summer-camp-school-server-side-phi.vercel.app/users')
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      setUsers(data)
+    })
 
 
   const { register, handleSubmit, formState: { errors, isValid } } = useForm();
@@ -41,6 +49,8 @@ function Register() {
               phoneNumber: phoneNumber,
               address: address
             })
+            
+            
 
             const newUser = { name, email, photoURL, role }
             fetch('https://summer-camp-school-server-side-phi.vercel.app/users', {
@@ -53,6 +63,10 @@ function Register() {
               .then(res => res.json())
               .then(data => {
                 console.log(data);
+              })
+              .then(() => {
+                setUsers([...users, newUser]);
+                navigate(from, { replace: true })
               })
 
             const user = { emai: loggedUser.email };
@@ -71,7 +85,7 @@ function Register() {
 
             setConfirmPassword(false);
             setError('');
-            navigate(from, { replace: true })
+            
           })
           .catch(error => {
             console.log(error);

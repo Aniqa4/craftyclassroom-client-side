@@ -34,8 +34,8 @@ function Navbar() {
             })
             .catch(error => {
                 console.log(error);
+                
             })
-        navigate(from, { replace: true })
     }
     return (
         <div
