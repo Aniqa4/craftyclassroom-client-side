@@ -8,8 +8,6 @@ function ManageUsers() {
     const [buttonDisable, setButtonDisable] = useState(null);
 
 
-
-
   useEffect(() => {
     fetch('https://summer-camp-school-server-side-phi.vercel.app/manageUsers',{
       method:'GET',

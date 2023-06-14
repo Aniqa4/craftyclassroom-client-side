@@ -3,12 +3,13 @@ import SectionTitle from '../SectionTitle/SectionTitle';
 import SubTitle from '../SectionTitle/SubTitle';
 import { AuthContext } from '../../Provider/AuthProvider';
 import Swal from 'sweetalert2';
+import { useQuery } from '@tanstack/react-query';
 
 
 
 function Classes() {
-  const { user, loading } = useContext(AuthContext);
-  const [approvedClasses, setApprovedClasses] = useState([]);
+  const { user} = useContext(AuthContext);
+  //const [approvedClasses, setApprovedClasses] = useState([]);
   const [studentsData, setStudentsData] = useState([]);
   const [users, setUsers] = useState([]);
 
@@ -20,14 +21,17 @@ function Classes() {
       })
 
   }, [])
-  useEffect(() => {
-    fetch('https://summer-camp-school-server-side-phi.vercel.app/approvedClasses')
-      .then(res => res.json())
-      .then(data => {
-        setApprovedClasses(data)
-      })
 
-  }, [])
+ const {data:approvedClasses,isLoading}=useQuery({
+    queryKey:["approvedClasses"],
+    queryFn: async ()=>{
+        const res= await fetch(`https://summer-camp-school-server-side-phi.vercel.app/approvedClasses`);
+        const approvedClasses = await res.json()
+        return approvedClasses  
+      }
+   }) 
+
+   //console.log(approvedClasses);
 
   useEffect(() => {
     fetch('https://summer-camp-school-server-side-phi.vercel.app/studentsData')
@@ -37,7 +41,7 @@ function Classes() {
       })
   }, [])
 
-  if (loading) {
+  if (isLoading) {
     return <div><span className="loading loading-spinner loading-lg"></span></div>
   }
 
