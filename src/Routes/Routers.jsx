@@ -6,12 +6,13 @@ import Instructor from "../Components/Instructor/Instructor";
 import Login from "../Components/LoginAndRegister/Login";
 import Register from "../Components/LoginAndRegister/Register";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
-import Payment from "../Components/Dashboard/Payment";
+import Payment from "../Components/Dashboard/Student/Payment";
 import UpdateClass from "../Components/Dashboard/Instructor/UpdateClass";
 import ErrorPage from "../Components/ErrorPage/ErrorPage";
 import Dashboard from "../Components/Dashboard/Dashboard";
 import Feedback from "../Components/Dashboard/Admin/feedback";
 import AddClass from "../Components/Dashboard/Instructor/AddClass";
+import PaymentHistory from "../Components/Dashboard/Student/PaymentHistory";
 
 
 const router = createBrowserRouter([{
@@ -37,6 +38,11 @@ const router = createBrowserRouter([{
         {
             path:'/dashboard',
             element:<PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>
+        },
+        {
+            path:"/payment-history",
+            element:<PrivateRoutes><PaymentHistory></PaymentHistory></PrivateRoutes>
+
         },
         {
             path:"/feedback/:id",

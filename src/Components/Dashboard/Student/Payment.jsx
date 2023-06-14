@@ -1,5 +1,5 @@
 import React from 'react'
-import SectionTitle from '../SectionTitle/SectionTitle'
+import SectionTitle from '../../SectionTitle/SectionTitle'
 import CheckoutForm from './CheckoutForm'
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';

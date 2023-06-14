@@ -38,7 +38,7 @@ function AddClass() {
     Swal.fire({
       position: 'center',
       icon: 'success',
-      title: 'Toy has been deleted',
+      title: 'Class has been added',
       showConfirmButton: false,
       timer: 1500
 

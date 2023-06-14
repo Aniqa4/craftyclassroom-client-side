@@ -4,6 +4,8 @@ import { MdLogin, MdOutlineLogout } from 'react-icons/md';
 import { AuthContext } from '../../Provider/AuthProvider';
 import { HiHome } from 'react-icons/hi';
 import ActiveRoute from '../../ActiveRoute/ActiveRoute';
+import { FiSun } from 'react-icons/fi';
+import { MdDarkMode } from 'react-icons/md';
 
 function Navbar() {
     const { user, logOut, loading } = useContext(AuthContext);
@@ -11,6 +13,26 @@ function Navbar() {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
+
+    const [theme, setTheme] = useState(
+        localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
+    );
+
+    // update state on toggle
+    const handleToggle = (e) => {
+        if (e.target.checked) {
+            setTheme("dark");
+        } else {
+            setTheme("light");
+        }
+    };
+
+    useEffect(() => {
+        localStorage.setItem("theme", theme);
+        const localTheme = localStorage.getItem("theme");
+        // add custom data-theme attribute to html tag required to update theme using DaisyUI
+        document.querySelector("html").setAttribute("data-theme", localTheme);
+    }, [theme]);
 
 
     if (loading) {
@@ -26,7 +48,7 @@ function Navbar() {
             })
             .catch(error => {
                 console.log(error);
-                
+
             })
     }
     return (
@@ -42,6 +64,20 @@ function Navbar() {
                 }
             </div>
             <div className='flex md:justify-center'>
+                <button className="btn btn-square btn-ghost">
+                    <label className="swap swap-rotate w-12 h-12">
+                        <input
+                            type="checkbox"
+                            onChange={handleToggle}
+                            // show toggle image based on localstorage theme
+                            checked={theme === "light" ? false : true}
+                        />
+                        {/* light theme sun image */}
+                        <span className="w-8 h-8 swap-on"><FiSun /></span>
+                        {/* dark theme moon image */}
+                        <span className="w-8 h-8 swap-off"><MdDarkMode /></span>
+                    </label>
+                </button>
                 {
                     user && <img src={user.photoURL} className=' me-2 rounded-full' style={{ width: "46px", height: "46px" }} title={user.displayName} />
                 }

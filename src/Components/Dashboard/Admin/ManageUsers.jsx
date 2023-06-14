@@ -42,6 +42,14 @@ function ManageUsers() {
                     title: 'Successfully changed the role as Instructor',
                     showConfirmButton: false,
                     timer: 1500})
+                    const updatedUsers = users.map((user) => {
+                      if (user._id === id) {
+                        return { ...user, role: 'instructor' };
+                      }
+                      return user;
+                    });
+                    setUsers(updatedUsers);
+                  
 
             }
     
@@ -66,7 +74,15 @@ function ManageUsers() {
                   title: 'Successfully changed the role as Admin',
                   showConfirmButton: false,
                   timer: 1500})
-          }
+                  const updatedUsers = users.map((user) => {
+                    if (user._id === id) {
+                      return { ...user, role: 'admin' };
+                    }
+                    return user;
+                  });
+                  setUsers(updatedUsers);
+                }
+          
   
         })
         setButtonDisable(id)
@@ -89,7 +105,14 @@ function ManageUsers() {
                 title: 'Successfully reset the Role',
                 showConfirmButton: false,
                 timer: 1500})
-        }
+                const updatedUsers = users.map((user) => {
+                  if (user._id === id) {
+                    return { ...user, role: 'student' };
+                  }
+                  return user;
+                });
+                setUsers(updatedUsers);
+              }
 
       })
       setButtonDisable(id)
