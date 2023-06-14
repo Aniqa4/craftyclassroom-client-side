@@ -99,7 +99,7 @@ function Classes() {
       })
     }
 
-  console.log('clicked');
+  //console.log('clicked');
   }
 
   
@@ -126,7 +126,7 @@ function Classes() {
                 <div className="card-actions">
                   <button onClick={() => handleSelectClass(x.classImage, x.className, x.price, x.name, x._id)}
                     className="btn bg-gray-200 text-cyan-950" 
-                    disabled={((users.find(x=>x.email===user.email)?.role)==='admin')||((users.find(x=>x.email===user.email)?.role)==='instructor')}>Select</button>
+                    disabled={((users?.find(x=>x.email===user?.email)?.role)==='admin')||((users?.find(x=>x.email===user?.email)?.role)==='instructor')}>Select</button>
                 </div>
               </div>
             </div>)

@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../Provider/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
+import axios from 'axios';
 
 function Login() {
   const [error, setError] = useState('');
@@ -32,7 +33,7 @@ function Login() {
       signIn(data.email, data.password)
         .then(result => {
           const user = result.user;
-          const loggedUser = { emai: user.email };
+          const loggedUser = { email: user.email };
           fetch('https://summer-camp-school-server-side-phi.vercel.app/jwt', {
             method: 'POST',
             headers:
@@ -62,24 +63,26 @@ function Login() {
       .then(result => {
         const loggedUser = result.user;
 
-        const email = loggedUser.email;
+        const email = loggedUser?.email;
         const existingUser = users.find(x => x.email === email)
+
         if (!existingUser) {
           const name = loggedUser.displayName;
           const photoURL = loggedUser.photoURL;
           const email = loggedUser.email;
           const role = 'student';
           const newUser = { name, email, photoURL, role }
-          fetch('https://summer-camp-school-server-side-phi.vercel.app/users', {
-            method: 'POST',
-            headers: {
-              'content-type': 'application/json'
-            },
-            body: JSON.stringify(newUser)
+
+
+          axios.
+          post(`https://summer-camp-school-server-side-phi.vercel.app/users`, newUser, {
+            headers: { 'content-type': 'application/json' }
           })
-            .then(res => res.json())
             .then(data => {
               console.log(data);
+            })
+            .catch(function (error) {
+              console.log(error);
             })
 
         }

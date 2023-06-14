@@ -5,25 +5,17 @@ import { useForm } from 'react-hook-form';
 import { AuthContext, auth } from '../../Provider/AuthProvider';
 import { updateProfile } from 'firebase/auth';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 function Register() {
   const { signUp } = useContext(AuthContext);
   const [confirmPassword, setConfirmPassword] = useState(false);
   const [error, setError] = useState('')
-  const [users, setUsers] = useState([])
 
 
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-
-  fetch('https://summer-camp-school-server-side-phi.vercel.app/users')
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);
-      setUsers(data)
-    })
-
 
   const { register, handleSubmit, formState: { errors, isValid } } = useForm();
 
@@ -49,24 +41,23 @@ function Register() {
               phoneNumber: phoneNumber,
               address: address
             })
-            
-            
+
+
 
             const newUser = { name, email, photoURL, role }
-            fetch('https://summer-camp-school-server-side-phi.vercel.app/users', {
-              method: 'POST',
-              headers: {
-                'content-type': 'application/json'
-              },
-              body: JSON.stringify(newUser)
-            })
-              .then(res => res.json())
+            axios.
+              post(`https://summer-camp-school-server-side-phi.vercel.app/users`, newUser, {
+                headers: { 'content-type': 'application/json' }
+              })
               .then(data => {
                 console.log(data);
               })
               .then(() => {
                 setUsers([...users, newUser]);
                 navigate(from, { replace: true })
+              })
+              .catch((error)=>{
+                console.log(error);
               })
 
             const user = { emai: loggedUser.email };
@@ -85,7 +76,7 @@ function Register() {
 
             setConfirmPassword(false);
             setError('');
-            
+
           })
           .catch(error => {
             console.log(error);
@@ -116,8 +107,16 @@ function Register() {
           </div>
           <div>
             <label> Password:</label>
-            <input type="password" {...register("password", { required: true })} placeholder="Enter Your Password" className="input input-bordered w-full" />
-            {errors.password && <span className=' text-red-800'>Password field is required</span>}
+            <input type="password" 
+            {...register("password", {
+              required: true,
+              pattern: {
+                value: /^(?=.*[A-Z])(?=.*[!@#$%^&*])/,
+                message: "Password must contain at least one capital letter and one symbol."
+              }
+            })}
+            placeholder="Enter Your Password" className="input input-bordered w-full" />
+            {errors.password && <span className=' text-red-800'>{errors?.password?.message}</span>}
           </div>
           <div>
             <label>Confirm Password:</label>

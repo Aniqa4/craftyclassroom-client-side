@@ -7,20 +7,11 @@ import ActiveRoute from '../../ActiveRoute/ActiveRoute';
 
 function Navbar() {
     const { user, logOut, loading } = useContext(AuthContext);
-    const [users, setUsers] = useState([]);
 
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
 
-
-    useEffect(() => {
-        fetch('https://summer-camp-school-server-side-phi.vercel.app/users')
-            .then(res => res.json())
-            .then(data => {
-                setUsers(data)
-            })
-    }, [])
 
     if (loading) {
         return <div className='flex justify-center'><span className="loading loading-spinner loading-lg"></span></div>
@@ -31,6 +22,7 @@ function Navbar() {
         logOut()
             .then(() => {
                 localStorage.removeItem('access-token')
+                navigate(from, { replace: true })
             })
             .catch(error => {
                 console.log(error);
@@ -46,18 +38,7 @@ function Navbar() {
                 <ActiveRoute to="/instructors">Instructors</ActiveRoute>
                 <ActiveRoute to="/classes">Classes</ActiveRoute>
                 {
-                    user &&
-                    <>
-                        {
-                            (users.find(x => x.email === user.email)?.role === "admin") && <ActiveRoute to="/adminDashboard">Admin Dashboard</ActiveRoute>
-                        }
-                        {
-                            (users.find(x => x.email === user.email)?.role === "instructor") && <ActiveRoute to="/instructorDashboard">Instructor Dashboard</ActiveRoute>
-                        }
-                        {
-                            (users.find(x => x.email === user.email)?.role === "student") && <ActiveRoute to="/studentDashboard">Student Dashboard</ActiveRoute>
-                        }
-                    </>
+                    user && <ActiveRoute to="/dashboard">Dashboard</ActiveRoute>
                 }
             </div>
             <div className='flex md:justify-center'>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, useLoaderData } from 'react-router-dom';
-import SectionTitle from '../SectionTitle/SectionTitle';
+import SectionTitle from '../../SectionTitle/SectionTitle';
 
 function UpdateClass() {
     const classData=useLoaderData()
@@ -17,7 +17,7 @@ function UpdateClass() {
         const updateClass = { className, classImage, availableSeats, price}
         console.log('clicked', updateClass);
     
-        fetch(`https://summer-camp-school-server-side-phi.vercel.app/allclasses/${classData._id}`, {
+        fetch(`https://summer-camp-school-server-side-phi.vercel.app/${classData._id}`, {
           method: 'PUT',
           headers:
             { 'content-type': 'application/json' },
@@ -54,8 +54,7 @@ function UpdateClass() {
           placeholder="Enter Total Seats(max 20)" className="input input-bordered input-accent" />
         <input type="Submit" value="UPDATE" className='btn' />
       </form>
-
-      <Link to="/instructorDashboard"><button className='btn flex mx-auto my-10'>Return to dashboard</button></Link>
+      <Link to="/dashboard"><button className='btn flex mx-auto my-10'>Return to dashboard</button></Link>
     </div>
   )
 }

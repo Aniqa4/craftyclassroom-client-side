@@ -5,13 +5,13 @@ import Classes from "../Components/Classes/Classes";
 import Instructor from "../Components/Instructor/Instructor";
 import Login from "../Components/LoginAndRegister/Login";
 import Register from "../Components/LoginAndRegister/Register";
-import AdminDashboard from "../Components/Dashboard/AdminDashboard";
-import InstructorDashboard from "../Components/Dashboard/InstructorDashboard";
-import StudentDashboard from "../Components/Dashboard/StudentDashboard";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 import Payment from "../Components/Dashboard/Payment";
-import UpdateClass from "../Components/Dashboard/UpdateClass";
+import UpdateClass from "../Components/Dashboard/Instructor/UpdateClass";
 import ErrorPage from "../Components/ErrorPage/ErrorPage";
+import Dashboard from "../Components/Dashboard/Dashboard";
+import Feedback from "../Components/Dashboard/Admin/feedback";
+import AddClass from "../Components/Dashboard/Instructor/AddClass";
 
 
 const router = createBrowserRouter([{
@@ -35,16 +35,17 @@ const router = createBrowserRouter([{
             element: <Classes></Classes>
         },
         {
-            path: "/adminDashboard",
-            element: <PrivateRoutes><AdminDashboard></AdminDashboard></PrivateRoutes>
+            path:'/dashboard',
+            element:<PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>
         },
         {
-            path: "/instructorDashboard",
-            element: <PrivateRoutes><InstructorDashboard></InstructorDashboard></PrivateRoutes>
+            path:"/feedback/:id",
+            element:<PrivateRoutes><Feedback></Feedback></PrivateRoutes>,
+            loader: ({ params }) => fetch(`https://summer-camp-school-server-side-phi.vercel.app/allclasses/${params.id}`)
         },
         {
-            path: "/studentDashboard",
-            element: <PrivateRoutes><StudentDashboard></StudentDashboard></PrivateRoutes>
+            path:"/addClass",
+            element:<PrivateRoutes><AddClass></AddClass></PrivateRoutes>
         },
         {
             path: "/login",

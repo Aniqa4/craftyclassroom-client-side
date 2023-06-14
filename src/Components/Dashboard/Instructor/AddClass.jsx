@@ -1,30 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { AuthContext } from '../../Provider/AuthProvider';
-import SectionTitle from '../SectionTitle/SectionTitle';
+import React, { useContext } from 'react'
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../../Provider/AuthProvider';
+import SectionTitle from '../../SectionTitle/SectionTitle';
 import { Link } from 'react-router-dom';
 
 
-function InstructorDashboard() {
-  const { user, loading } = useContext(AuthContext);
-  const [allClasses, setAllClasses] = useState([]);
+function AddClass() {
 
-  if (loading) {
-    <div>............</div>
-  }
-  useEffect(() => {
-    fetch('http://localhost:5000/allclasses')
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        setAllClasses(data)
-
-      })
-  }, [])
-
-  const myClasses = allClasses.filter(x => x.email === user.email)
-  console.log(myClasses);
-
+  const { user } = useContext(AuthContext);
   const handleAddClass = (e) => {
     e.preventDefault();
 
@@ -63,17 +46,9 @@ function InstructorDashboard() {
     form.reset()
 
   }
-
-
   return (
     <div className='container mx-auto md:my-24 '>
-      <SectionTitle title={'Instructor Information'}></SectionTitle>
-      <div className='grid grid-cols-1'>
-        <img src={user.photoURL} className='rounded' />
-        <h1 className=' text-3xl font-semibold'>{user.displayName}</h1>
-        <p>Email : {user.email}</p>
-        <button className='btn my-10'>Add a class</button>
-      </div>
+      <SectionTitle title={'Add a new class'}></SectionTitle>
       <form onSubmit={handleAddClass} className='grid grid-cols-1 gap-5 w-6/12 mx-auto border rounded-xl'>
         <input type="text" name="className" placeholder="Class Name" className="input input-bordered input-accent " />
         <input type="text" name="classImage" placeholder="Class Cover Photo url" className="input input-bordered input-accent" />
@@ -84,34 +59,9 @@ function InstructorDashboard() {
           placeholder="Enter Total Seats(max 20)" className="input input-bordered input-accent" />
         <input type="Submit" value="ADD" className='btn' />
       </form>
-
-      <div >
-        <SectionTitle title={'My classes'}></SectionTitle>
-        <div className='grid grid-cols-3 gap-20 mt-10'>
-          {
-            myClasses.map((singleClass,index) =>
-
-              <div key={index} className="card card-compact bg-base-100 shadow-xl">
-                <figure><img src={singleClass.classImage} alt="Shoes" /></figure>
-                <div className="card-body">
-                  <h2 className="card-title">{singleClass.className}</h2>
-                  <p>Available Seats : {singleClass.availableSeats}</p>
-                  <p>Total enrolled students : {singleClass.totalEnrolledStudents}</p>
-                  <p>Price : {singleClass.price}$</p>
-                  <p>Status : {singleClass.status}</p>
-                  <p>Feedback : {singleClass.feedback}</p>
-                  <div className="card-actions justify-end">
-                    <Link to={`/updateClass/${singleClass._id}`}><button className="btn ">Update</button></Link>
-                  </div>
-                </div>
-              </div>)
-          }
-        </div>
-      </div>
-
-
+      <Link to="/dashboard"><button className='btn flex mx-auto my-10'>Return to dashboard</button></Link>
     </div>
   )
 }
 
-export default InstructorDashboard;
+export default AddClass
