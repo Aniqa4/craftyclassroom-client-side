@@ -15,7 +15,7 @@ function PopularInstructors() {
             })
     }, [])
     return (
-        <div>
+        <div className='container mx-auto'>
             <SectionTitle title={'Popular Instructors'}></SectionTitle>
             <SubTitle subTitle={'Discover Our Most Popular Instructors: Experts You Can Trust'}></SubTitle>
             <div className='grid md:grid-cols-6 grid-cols-2 md:gap-10 md:my-20 gap-3 m-3'>

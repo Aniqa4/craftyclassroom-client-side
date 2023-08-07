@@ -15,8 +15,7 @@ function PopularClasses() {
       })
   }, [])
   return (
-    <div>
-
+    <div className=' container mx-auto'>
       <SectionTitle title={'Popular Classes'}></SectionTitle>
       <SubTitle subTitle={'Discover Trending Classes'}></SubTitle>
       <div className='md:flex grid grid-cols-2 gap-3 justify-around md:gap-10 md:my-20 mx-3 '>

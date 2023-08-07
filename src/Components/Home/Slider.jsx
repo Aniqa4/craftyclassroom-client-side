@@ -8,7 +8,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 function Slider() {
     return (
-        <div className='md:my-10 my-5'>
+        <div className='container mx-auto md:my-10 my-5'>
             <Carousel>
                 <div className=' relative'>
                     <img src={slider4} className=' rounded' />
@@ -17,9 +17,7 @@ function Slider() {
                         <span className=' text-black font-bold md:text-3xl'>Welcome to Crafty Classroom</span>
                         <p className=' text-cyan-950 md:text-base text-xs'>CraftyClassroom is an online platform dedicated to providing a wide range of extracurricular arts and crafts courses.
                             Whether you're a beginner or an experienced artist, our website offers a variety of creative classes and workshops.
-                            Explore painting, drawing, pottery, and more while
-                            connecting with fellow art enthusiasts in our vibrant community.
-                            Ignite your artistic passion and expand your skills with ArtCraft Hub.</p>
+                        </p>
                     </div>
                 </div>
                 <div>
@@ -28,9 +26,7 @@ function Slider() {
                         <span className=' text-black font-bold md:text-3xl'>Welcome to Crafty Classroom</span>
                         <p className=' text-cyan-950 md:text-base text-xs'>CraftyClassroom is an online platform dedicated to providing a wide range of extracurricular arts and crafts courses.
                             Whether you're a beginner or an experienced artist, our website offers a variety of creative classes and workshops.
-                            Explore painting, drawing, pottery, and more while
-                            connecting with fellow art enthusiasts in our vibrant community.
-                            Ignite your artistic passion and expand your skills with ArtCraft Hub.</p>
+                        </p>
                     </div>
                 </div>
                 <div>
@@ -39,9 +35,7 @@ function Slider() {
                         <span className=' text-black font-bold md:text-3xl'>Welcome to Crafty Classroom</span>
                         <p className=' text-cyan-950 md:text-base text-xs'>CraftyClassroom is an online platform dedicated to providing a wide range of extracurricular arts and crafts courses.
                             Whether you're a beginner or an experienced artist, our website offers a variety of creative classes and workshops.
-                            Explore painting, drawing, pottery, and more while
-                            connecting with fellow art enthusiasts in our vibrant community.
-                            Ignite your artistic passion and expand your skills with ArtCraft Hub.</p>
+                        </p>
                     </div>
                 </div>
                 <div>
@@ -50,9 +44,7 @@ function Slider() {
                         <span className=' text-black font-bold md:text-3xl'>Welcome to Crafty Classroom</span>
                         <p className=' text-cyan-950 md:text-base text-xs'>CraftyClassroom is an online platform dedicated to providing a wide range of extracurricular arts and crafts courses.
                             Whether you're a beginner or an experienced artist, our website offers a variety of creative classes and workshops.
-                            Explore painting, drawing, pottery, and more while
-                            connecting with fellow art enthusiasts in our vibrant community.
-                            Ignite your artistic passion and expand your skills with ArtCraft Hub.</p>
+                        </p>
                     </div>
                 </div>
             </Carousel>

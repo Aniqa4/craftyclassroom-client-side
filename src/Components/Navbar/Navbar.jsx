@@ -55,10 +55,10 @@ function Navbar() {
         <div
             className='md:flex md:justify-between md:items-center grid gap-3 px-5 py-3 bg-gray-100 text-cyan-950 md:fixed top-0 left-0 right-0 z-10 border-cyan-700 border-b-[1px]'>
             <div className='text-3xl font-bold'> Crafty<span className=' text-gray-700'>Classroom</span></div>
-            <div className='md:flex grid md:gap-20 gap-2'>
+            <div className='md:flex grid md:gap-5 gap-2'>
                 <ActiveRoute to="/"><span className=' text-xl'><HiHome /></span></ActiveRoute>
                 <ActiveRoute to="/instructors">Instructors</ActiveRoute>
-                <ActiveRoute to="/classes">Classes</ActiveRoute>
+                <ActiveRoute to="/classes">Courses</ActiveRoute>
                 {
                     user && <ActiveRoute to="/dashboard">Dashboard</ActiveRoute>
                 }
