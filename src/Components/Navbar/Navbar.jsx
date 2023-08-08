@@ -5,7 +5,7 @@ import { AuthContext } from '../../Provider/AuthProvider';
 import { HiHome } from 'react-icons/hi';
 import ActiveRoute from '../../ActiveRoute/ActiveRoute';
 import { FiSun } from 'react-icons/fi';
-import { MdDarkMode } from 'react-icons/md';
+import { MdOutlineNightlightRound } from 'react-icons/md';
 import {AiOutlineUserAdd} from 'react-icons/ai';
 import Menu from './Menu';
 
@@ -82,7 +82,7 @@ function Navbar() {
                             {/* light theme sun image */}
                             <span className="w-8 h-8 swap-on text-xl flex justify-center items-center "><FiSun /></span>
                             {/* dark theme moon image */}
-                            <span className="w-8 h-8 swap-off text-xl flex justify-center items-center "><MdDarkMode /></span>
+                            <span className="w-8 h-8 swap-off text-xl flex justify-center items-center "><MdOutlineNightlightRound /></span>
                         </label>
                     </button>
                     {
