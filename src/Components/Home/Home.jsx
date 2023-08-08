@@ -5,6 +5,7 @@ import PopularInstructors from './PopularInstructors';
 import TopStudents from './TopStudents';
 import Banner from './Banner';
 import Gallery from './Gallery';
+import StudentReview from './StudentReview';
 
 function Home() {
   return (
@@ -15,6 +16,7 @@ function Home() {
         <PopularInstructors></PopularInstructors>
         <TopStudents></TopStudents>
         <Gallery/>
+        <StudentReview/>
     </div>
   )
 }
