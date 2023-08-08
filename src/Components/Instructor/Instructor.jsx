@@ -44,7 +44,7 @@ function Instructor() {
 
 
   return (
-    <div className='md:container md:mx-auto mx-5 md:my-24 my-5'>
+    <div className='md:container md:mx-auto mx-5 my-24'>
       <SectionTitle title={'All Instructors'}></SectionTitle>
       <SubTitle subTitle={'Meet Our Talented Instructors'}></SubTitle>
       <div className='grid md:grid-cols-2  md:gap-20 gap-5'>

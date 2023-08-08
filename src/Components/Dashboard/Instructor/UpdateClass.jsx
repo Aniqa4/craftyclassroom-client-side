@@ -44,7 +44,7 @@ function UpdateClass() {
   return (
     <div className='container mx-auto md:my-24 '>
         <SectionTitle title={'update your class'}></SectionTitle>
-        <form onSubmit={handleUpdateClass} className='grid grid-cols-1 gap-5 w-6/12 mx-auto border rounded-xl'>
+        <form onSubmit={handleUpdateClass} className='grid grid-cols-1 gap-5 lg:w-6/12 mx-auto'>
         <input type="text" name="className" defaultValue={classData.className} placeholder="Class Name" className="input input-bordered input-accent " />
         <input type="text" name="classImage" defaultValue={classData.classImage} placeholder="Class Cover Photo url" className="input input-bordered input-accent" />
         <input type="text" name="name" defaultValue={classData.name} disabled className="input input-bordered input-accent" />

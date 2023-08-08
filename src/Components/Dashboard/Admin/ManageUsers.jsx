@@ -120,13 +120,13 @@ function ManageUsers() {
     return (
         <div>
             <SectionTitle title={'All Users'}></SectionTitle>
-            <table className=" w-full">
+            <table className="lg:w-full md:mx-auto mx-5">
                 <thead>
                     <tr className=" bg-gray-100 text-left">
                         <th className='py-2'>No.</th>
-                        <th>Name</th>
+                        <th className='lg:block hidden'>Name</th>
                         <th>Email</th>
-                        <th>Role</th>
+                        <th className='lg:block hidden' >Role</th>
                         <th>Change Role</th>
                     </tr>
                 </thead>
@@ -134,10 +134,10 @@ function ManageUsers() {
                     {users.map((user, index) => (
                         <tr key={user._id} className="border-b">
                             <td className='py-2'>{index + 1}</td>
-                            <td>{user.name}</td>
+                            <td className='lg:block hidden'>{user.name}</td>
                             <td>{user.email}</td>
-                            <td className={user.role=='admin'?' font-bold':''|| user.role=='instructor'?'text-blue-500':''}>{user.role}</td>
-                            <td>
+                            <td className={user.role=='admin'?'lg:block hidden font-bold':'lg:block hidden'|| user.role=='instructor'?'text-blue-500 lg:block hidden':'lg:block hidden'}>{user.role}</td>
+                            <td className=''>
                                 <button 
                                 onClick={()=>handleMakeInstructor(user._id)} 
                                 disabled={buttonDisable==user._id || (user?.role==='instructor')} 

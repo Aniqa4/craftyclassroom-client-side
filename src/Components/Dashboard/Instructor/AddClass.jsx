@@ -47,9 +47,9 @@ function AddClass() {
 
   }
   return (
-    <div className='container mx-auto md:my-24 '>
+    <div className='container mx-auto my-24 '>
       <SectionTitle title={'Add a new class'}></SectionTitle>
-      <form onSubmit={handleAddClass} className='grid grid-cols-1 gap-5 w-6/12 mx-auto border rounded-xl'>
+      <form onSubmit={handleAddClass} className='grid grid-cols-1 gap-5 lg:w-6/12 px-5 mx-auto'>
         <input type="text" name="className" placeholder="Class Name" className="input input-bordered input-accent " />
         <input type="text" name="classImage" placeholder="Class Cover Photo url" className="input input-bordered input-accent" />
         <input type="text" name="name" defaultValue={user.displayName} disabled className="input input-bordered input-accent" />

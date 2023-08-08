@@ -6,6 +6,10 @@ import { HiHome } from 'react-icons/hi';
 import ActiveRoute from '../../ActiveRoute/ActiveRoute';
 import { FiSun } from 'react-icons/fi';
 import { MdDarkMode } from 'react-icons/md';
+import {AiOutlineUserAdd} from 'react-icons/ai';
+import Menu from './Menu';
+
+
 
 function Navbar() {
     const { user, logOut, loading } = useContext(AuthContext);
@@ -51,44 +55,60 @@ function Navbar() {
 
             })
     }
+
+
     return (
-        <div
-            className='md:flex md:justify-between md:items-center grid gap-3 px-5 py-3 bg-gray-100 text-cyan-950 md:fixed top-0 left-0 right-0 z-10 border-cyan-700 border-b-[1px]'>
-            <div className='text-3xl font-bold'> Crafty<span className=' text-gray-700'>Classroom</span></div>
-            <div className='md:flex grid md:gap-5 gap-2'>
-                <ActiveRoute to="/"><span className=' text-xl'><HiHome /></span></ActiveRoute>
-                <ActiveRoute to="/instructors">Instructors</ActiveRoute>
-                <ActiveRoute to="/classes">Courses</ActiveRoute>
-                {
-                    user && <ActiveRoute to="/dashboard">Dashboard</ActiveRoute>
-                }
+        <>
+            <div
+                className='hidden lg:flex justify-between items-center  gap-3 px-5 py-3 bg-gray-100 text-cyan-950 fixed top-0 left-0 right-0 z-10 shadow'>
+                <div className='text-3xl font-bold'> Crafty<span className=' text-gray-700'>Classroom</span></div>
+                <div className='flex gap-5'>
+                    <ActiveRoute to="/"><span className=' text-xl'><HiHome /></span></ActiveRoute>
+                    <ActiveRoute to="/instructors">Instructors</ActiveRoute>
+                    <ActiveRoute to="/classes">Courses</ActiveRoute>
+                    {
+                        user && <ActiveRoute to="/dashboard">Dashboard</ActiveRoute>
+                    }
+                </div>
+                <div className='flex justify-center'>
+                    <button className="btn btn-square btn-ghost">
+                        <label className="swap swap-rotate w-12 h-12">
+                            <input
+                                type="checkbox"
+                                onChange={handleToggle}
+                                // show toggle image based on localstorage theme
+                                checked={theme === "light" ? false : true}
+                            />
+                            {/* light theme sun image */}
+                            <span className="w-8 h-8 swap-on"><FiSun /></span>
+                            {/* dark theme moon image */}
+                            <span className="w-8 h-8 swap-off"><MdDarkMode /></span>
+                        </label>
+                    </button>
+                    {
+                        user && <img src={user.photoURL} className=' me-2 rounded-full' style={{ width: "46px", height: "46px" }} title={user.displayName} />
+                    }
+                    {
+                        user ?
+                            <button onClick={handleSignOut} className=' text-3xl pr-10'>
+                                <Link to='/login'><MdOutlineLogout /></Link>
+                            </button> : <button className=' text-3xl pr-10'><Link to="/login"><MdLogin /></Link></button>
+                    }
+                </div>
             </div>
-            <div className='flex md:justify-center'>
-                <button className="btn btn-square btn-ghost">
-                    <label className="swap swap-rotate w-12 h-12">
-                        <input
-                            type="checkbox"
-                            onChange={handleToggle}
-                            // show toggle image based on localstorage theme
-                            checked={theme === "light" ? false : true}
-                        />
-                        {/* light theme sun image */}
-                        <span className="w-8 h-8 swap-on"><FiSun /></span>
-                        {/* dark theme moon image */}
-                        <span className="w-8 h-8 swap-off"><MdDarkMode /></span>
-                    </label>
-                </button>
-                {
-                    user && <img src={user.photoURL} className=' me-2 rounded-full' style={{ width: "46px", height: "46px" }} title={user.displayName} />
-                }
+            <div className='lg:hidden flex justify-between items-baseline fixed top-0 left-0 right-0 z-10 shadow  bg-gray-100 py-5 px-5'>
+                <Link to="/">
+                    <div className='text-xl font-bold '> Crafty<span className=' text-gray-700'>Classroom</span></div>
+                </Link>
                 {
                     user ?
-                        <button onClick={handleSignOut} className=' text-3xl pr-10'>
-                            <Link to='/login'><MdOutlineLogout /></Link>
-                        </button> : <button className=' text-3xl pr-10'><Link to="/login"><MdLogin /></Link></button>
+                        <p onClick={handleSignOut} className=' text-sm bg-slate-500 text-white px-3 py-1 rounded shadow'>
+                            <Link to='/login'>Log Out</Link>
+                        </p> : <p className='text-xl'><Link to="/login"><AiOutlineUserAdd/></Link></p>
                 }
+                <Menu />
             </div>
-        </div>
+        </>
     )
 }
 

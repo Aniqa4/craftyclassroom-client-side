@@ -93,7 +93,7 @@ function Register() {
   return (
     <div className='container mx-auto my-24 '>
       <SectionTitle title={'Sign up to CraftyClassroom'}></SectionTitle>
-      <div className=' container mx-auto w-5/12 border rounded-xl p-20 bg-gray-100'>
+      <div className=' container mx-auto md:w-5/12 border rounded-xl p-5 md:p-20 bg-gray-100'>
         <form onSubmit={handleSubmit(onSubmit)} className=' py-5'>
           <div>
             <label> Name:</label>

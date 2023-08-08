@@ -112,7 +112,7 @@ function Login() {
   return (
     <div className='container mx-auto my-24 '>
       <SectionTitle title={'Log In to CraftyClassroom'}></SectionTitle>
-      <div className=' container mx-auto w-4/12 border rounded-xl p-20 bg-gray-100'>
+      <div className=' container mx-auto md:w-4/12 border md:rounded-xl p-5 md:p-20 bg-gray-100'>
         <form onSubmit={handleSubmit(onSubmit)} className=' py-5'>
           <label> Email:</label>
           <input type="text" {...register("email")} placeholder="Your Email Address" className="input input-bordered w-full" /><br />

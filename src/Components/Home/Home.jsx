@@ -10,7 +10,7 @@ import Blogs from './Blogs';
 
 function Home() {
   return (
-    <div>
+    <div className=' mt-10 md:mt-0'>
         <Banner></Banner>
         <Slider></Slider>
         <PopularClasses></PopularClasses>

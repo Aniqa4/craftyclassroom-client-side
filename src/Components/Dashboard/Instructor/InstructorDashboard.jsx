@@ -35,17 +35,17 @@ function InstructorDashboard() {
 
 
   return (
-    <div className='container mx-auto md:my-24 '>
+    <div className='container mx-auto my-24 '>
       <SectionTitle title={'Instructor Information'}></SectionTitle>
-      <div className='grid grid-cols-1'>
+      <div className='grid grid-cols-1 px-2'>
         <img src={user.photoURL} className='rounded w-2/12' />
-        <h1 className=' text-3xl font-semibold'>{user.displayName}</h1>
+        <h1 className=' md:text-3xl font-semibold'>{user.displayName}</h1>
         <p>Email : {user.email}</p>
         <Link to="/addClass"><button className='btn my-10'>Add a class <span className=' text-2xl'><GrAddCircle/></span> </button></Link>
       </div>
       <div >
         <SectionTitle title={'My classes'}></SectionTitle>
-        <div className='grid grid-cols-3 gap-20 mt-10'>
+        <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-10 mt-10 px-2'>
           {
             myClasses.map((singleClass, index) =>
 

@@ -30,7 +30,7 @@ function EnrolledClasses() {
     return (
         <div>
             <SectionTitle title={'my Enrolled classes'}></SectionTitle>
-            <div className='grid md:grid-cols-4 gap-5 mx-auto my-10'>
+            <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-5 mx-auto my-10 px-2'>
             {
                 enrolledData?enrolledData.map(x =>
                     <div key={x._id} className="card h-60  bg-base-100 shadow-xl image-full">

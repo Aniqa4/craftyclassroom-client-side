@@ -78,11 +78,11 @@ function ManageClasses() {
     return (
         <div >
             <SectionTitle title={'All Classes'}></SectionTitle>
-            <div className='grid grid-cols-3 gap-10'>
+            <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-10 px-2 md:px-5 lg:px-0'>
                 {
                     classes.map(singleClass =>
-                        <div key={singleClass._id} className='p-10 border rounded shadow-xl'>
-                            <img src={singleClass.classImage} className='w-96 h-56 rounded-xl mb-2' />
+                        <div key={singleClass._id} className='lg:p-10 p-5 border rounded shadow-xl'>
+                            <img src={singleClass.classImage} className='lg:w-96 w-72 mx-auto rounded-xl mb-2' />
                             <h1>Class Name: {singleClass.className}</h1>
                             <p>Instructor Name : {singleClass.name}</p>
                             <p>Instructor email : {singleClass.email}</p>
