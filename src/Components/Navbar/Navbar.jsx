@@ -70,8 +70,8 @@ function Navbar() {
                         user && <ActiveRoute to="/dashboard">Dashboard</ActiveRoute>
                     }
                 </div>
-                <div className='flex justify-center'>
-                    <button className="btn btn-square btn-ghost">
+                <div className='flex justify-center gap-5'>
+                    <button>
                         <label className="swap swap-rotate w-12 h-12">
                             <input
                                 type="checkbox"
@@ -80,9 +80,9 @@ function Navbar() {
                                 checked={theme === "light" ? false : true}
                             />
                             {/* light theme sun image */}
-                            <span className="w-8 h-8 swap-on"><FiSun /></span>
+                            <span className="w-8 h-8 swap-on text-xl flex justify-center items-center "><FiSun /></span>
                             {/* dark theme moon image */}
-                            <span className="w-8 h-8 swap-off"><MdDarkMode /></span>
+                            <span className="w-8 h-8 swap-off text-xl flex justify-center items-center "><MdDarkMode /></span>
                         </label>
                     </button>
                     {
@@ -92,7 +92,7 @@ function Navbar() {
                         user ?
                             <button onClick={handleSignOut} className=' text-3xl pr-10'>
                                 <Link to='/login'><MdOutlineLogout /></Link>
-                            </button> : <button className=' text-3xl pr-10'><Link to="/login"><MdLogin /></Link></button>
+                            </button> : <button className=' text-3xl pr-10'><Link to="/login"><AiOutlineUserAdd/></Link></button>
                     }
                 </div>
             </div>
