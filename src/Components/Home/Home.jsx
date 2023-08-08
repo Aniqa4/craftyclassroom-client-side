@@ -4,6 +4,7 @@ import PopularClasses from './PopularClasses';
 import PopularInstructors from './PopularInstructors';
 import TopStudents from './TopStudents';
 import Banner from './Banner';
+import Gallery from './Gallery';
 
 function Home() {
   return (
@@ -13,6 +14,7 @@ function Home() {
         <PopularClasses></PopularClasses>
         <PopularInstructors></PopularInstructors>
         <TopStudents></TopStudents>
+        <Gallery/>
     </div>
   )
 }
