@@ -9,7 +9,7 @@ function StudentReview() {
     <div className=' container mx-auto'>
         <SectionTitle title={'Student Success Stories'}/>
         <SubTitle subTitle={'Inspiring Journeys through Our Courses'}/>
-        <div className=' m-5'>
+        <div className='m-2 md:m-5'>
             <Review image={image} name={'Emily G.'} course={'Watercolor Wonders'}
             review={`I'm so glad I found CraftyClassroom! The "Watercolor Wonders" course was an eye-opener. The instructor's guidance made learning watercolor art enjoyable and approachable. The well-organized materials and clear videos helped me improve my skills, and now I'm creating art I never thought possible. [Website Name] has boosted my artistic confidence!`}/>
             <Review image={image} name={'Alex M.'} course={'Digital Art Essentials'}

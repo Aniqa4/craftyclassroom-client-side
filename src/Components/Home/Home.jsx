@@ -6,6 +6,7 @@ import TopStudents from './TopStudents';
 import Banner from './Banner';
 import Gallery from './Gallery';
 import StudentReview from './StudentReview';
+import Blogs from './Blogs';
 
 function Home() {
   return (
@@ -17,6 +18,7 @@ function Home() {
         <TopStudents></TopStudents>
         <Gallery/>
         <StudentReview/>
+        <Blogs/>
     </div>
   )
 }
