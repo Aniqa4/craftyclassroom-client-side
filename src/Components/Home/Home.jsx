@@ -12,7 +12,6 @@ function Home() {
   return (
     <div className=' mt-10 md:mt-0'>
         <Banner></Banner>
-        <Slider></Slider>
         <PopularClasses></PopularClasses>
         <PopularInstructors></PopularInstructors>
         <TopStudents></TopStudents>
